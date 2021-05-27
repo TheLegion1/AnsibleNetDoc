@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<title>MDF-CORE</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
+.switch {
+  display: inline-block;
+  height: 34px;
+  position: relative;
+  width: 60px;
+}
+
+.switch input {
+  display:none;
+}
+
+.slider {
+  background-color: #ccc;
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: .4s;
+}
+
+.slider:before {
+  background-color: #fff;
+  bottom: 4px;
+  content: "";
+  height: 26px;
+  left: 4px;
+  position: absolute;
+  transition: .4s;
+  width: 26px;
+}
+
+input:checked + .slider {
+  background-color: #009DDC;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+.vlan{
+  display: block;
+  width: 25%;
+  float: left;
+  margin:  auto;
+}
+.vlan_table{
+  margin:  auto;
+  padding-bottom: 150px;
+  padding-top: 3px;
+}
+.collapsible {
+  background-color: white;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+/* Style the collapsible content. Note: hidden by default */
+.content {
+  padding: 0 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+  background-color: white;
+}
+</style>
+<head>
+  <script>
+
+    function expand() {
+      var content = document.getElementById("legend_container");
+      if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    }
+    }
+  </script>
+</head>
+<body class="w3-light-grey">
+
+<!-- Page Container -->
+<div class="w3-content w3-margin-top" style="max-width:1400px;">
+
+  <!-- The Grid -->
+  <div class="w3-row-padding">
+
+    <!-- Left Column -->
+    <div class="w3-third">
+
+      <div class="w3-white w3-text-grey w3-card-4">
+        <br>
+        <img src="HugginsLogo.bmp" style="margin: auto; float: ; display: block" alt="Logo">
+        <div class="w3-display-container">
+
+          <div class="w3-display-center w3-container w3-text-black">
+            <h2 id="hostname">SWITCH-NAME</h2>
+            <a href='index.html' class="button"> Go Back</a>
+          </div>
+        </div>
+        <div class="w3-container">
+          <p id="ios_version"></i>IOS_VER</p>
+          <p></i>Stacked SN:</p>
+          <ul id= "SN">
+          </ul>
+          <p></i>IP Addresses Associated:</p>
+          <ul id="IP">
+          </ul>
+          <p></i></p>
+          <hr>
+          <p></i>Downloadable Config Files:</p>
+          <ul id="configDL">
+          </ul>
+
+
+          <br>
+        </div>
+      </div><br>
+
+    <!-- End Left Column -->
+    </div>
+
+    <!-- Right Column -->
+    <div class="w3-twothird">
+
+      <div class="w3-container w3-card w3-white w3-margin-bottom">
+        <h2 class="w3-text-grey w3-padding-16"></i>Active/Inactive Ports</h2>
+        <div class="w3-container">
+          <p>Activate Vlan Overlay</p>
+          <label class="switch" for="checkbox">
+          <input type="checkbox" id="checkbox" onchange='handleChange(this);'>
+          <div class="slider round"></div>
+          </label>
+          <img id="switch_img" src="IDF-MedArts.png" style="max-width: 100%">
+          
+            <button type="button" class="collapsible" onclick='expand();'></button>
+            <div class="content" id="legend_container">
+            <ul class="vlan_table" id="legend">
+            </ul>
+            </div>
+
+
+          <br>
+          <br>
+          <hr>
+
+          <h5 class="w3-opacity"><b>CDP/LLDP Neighbors</b></h5>
+          <div id="neighbors">
+          </div>
+          <hr>
+        </div>
+
+    <!-- End Right Column -->
+    </div>
+
+  <!-- End Grid -->
+  </div>
+
+  <!-- End Page Container -->
+</div>
+
+
+
+</body>
+</html>
