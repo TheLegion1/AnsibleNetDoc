@@ -1,0 +1,142 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+  }
+  .theme-light {
+    --color-primary: #0060df;
+    --color-secondary: #fbfbfe;
+    --color-accent: #fd6f53;
+    --font-color: #000000;
+    --background:  #afafaf;
+    --logo_image: url(Huggins_light.png);
+    --warn_color:  #f03030;
+  }
+  .theme-dark {
+    --color-primary: #17ed90;
+    --color-secondary: #243133;
+    --color-accent: #12cdea;
+    --font-color: #ffffff;
+    --background: #141b1b;
+    --logo_image: url(Huggins.png);
+    --warn_color:  #f09630;
+  }
+  .container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background: var(--color-secondary);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .container h1 {
+    color: var(--font-color);
+  }
+  .container button {
+    color: var(--font-color);
+    background: var(--color-primary);
+    padding: 10px 20px;
+    border: 0;
+    border-radius: 5px;
+  }
+
+  .column-onethird{
+    color: var(--font-color);
+    background: var(--color-secondary);
+    float:  left;
+    padding:  10px;
+    box-shadow: 0px 3px 5px 1px grey;
+    transition: 1s;
+    max-width: 20%;
+  }
+
+  .column-twothird{
+    color: var(--font-color);
+    background: var(--color-secondary);
+    float:  left;
+    margin-left:  15px;
+    padding:  10px;
+    max-width: 60%;
+    resize:  both;
+
+    box-shadow: 0px 3px 5px 1px grey;
+    transition: 1s;
+    margin-bottom: 4%;
+  }
+
+  .thic-columnn{
+    color: var(--font-color);
+    background:  var(--color-secondary);
+    width:  90%;
+    margin: auto;
+    box-shadow: 0px 3px 5px 1px grey;
+    transition: 1s;
+    padding:  15px;
+  }
+
+  .thic-columnn-warn{
+    color:  white;
+    background:  var(--warn_color);
+    width:  90%;
+    margin: auto;
+    box-shadow: 0px 3px 5px 1px grey;
+    transition: 1s;
+    text-align: center;
+    font-size: 15px;
+    padding:  15px;
+  }
+
+  .body-color{
+
+    background: var(--background);
+    transition: 1s;
+    font-family: Arial;
+    width:  90%;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right:  auto;
+  }
+
+  .collapsible {
+  background: var(--color-secondary);
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  transition: 1s;
+}
+
+/* Style the collapsible content. Note: hidden by default */
+.content {
+  padding: 0 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+  background: var(--color-secondary);
+  transition:  1s;
+}
+
+.logo{
+  max-width: 75%;
+  height:  auto;
+  content: var(--logo_image);
+  transition:  1s;
+}
+
+.w3-text-teal{
+  font-size: 15px;
+}
+
+h1{
+  color: var(--font-color);
+}
+
+body{
+  color:  var(--font-color);
+}
