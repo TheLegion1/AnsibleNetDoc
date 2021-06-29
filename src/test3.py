@@ -7,6 +7,7 @@ from bs4 import BeautifulSoup as bs
 import os
 import re
 import shutil
+import datetime
 
 indexFiles = []
 
@@ -306,15 +307,12 @@ def GenerateVlanPortImage(ports, sfps, port_vlan_mapping, num_ports, num_switche
     
     #image variables
     port_size = 64
-    padding = 6 #50
-    switch_gap = 50 #150
-    #num_switches = floor(num_ports / 48)
-    num_switches = int(num_switches)
-    #print("Switches: " + str(num_switches))
+    padding = 6
+    switch_gap = 50
+    num_switches = int(num_switches) #ensure that we are working with an int
     img_width = (28 * (port_size + padding)) + (3*padding)
     img_height = (num_switches * (2 * (port_size + padding) + (padding))) + (num_switches * switch_gap)
     switch_img = Image.new(mode = "RGBA", size = (int(img_width), int(img_height)), color = (120,120,120,0))
-    #switch_img.show()
     inactive_port = Image.open("rj45_small.png", 'r')
     inactive_sfp = Image.open("sfp_small.png", 'r')
     bck = Image.new(mode="RGBA", size = (port_size-6, port_size-6), color=(255,255,255,0))
@@ -487,6 +485,9 @@ def GenerateDoc(switchFile):
                 base = os.path.dirname(os.path.abspath(template_file))
                 html = open(os.path.join(base, template_file))
                 soup = bs(html, 'html.parser')
+                #title of page
+                title = soup.find("title")
+                title.string = hostname + " - AnsibleNetDoc"
                 #hostname
                 sw_name = soup.find("h2", {"id":"hostname"})
                 sw_name_new = sw_name.find(text=re.compile('SWITCH-NAME')).replace_with(hostname)
@@ -605,7 +606,12 @@ def GenerateIndexHtml():
         html = open(os.path.join(base, index_file))
         soup = bs(html, 'html.parser')
 
+        dateUpdate = soup.find("h4", {"id": "dteUpd"})
+        x = datetime.datetime.now()
+        dateUpdate.string = "Last Updated On: " + str(x.strftime("%x")) + " at " + str(x.strftime("%X"))
+
         sn_ulist = soup.find("ul", {"id":"toc"})
+        indexFiles.sort()
         for file in indexFiles:
                 li_new_tag = soup.new_tag('li')
                 a_tag = soup.new_tag('button', href=file, **{"class": "button button1"})
